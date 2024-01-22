@@ -68,7 +68,11 @@ abstract class SpriteRect(screenX: Int, screenY: Int) : Sprite(screenX, screenY)
     override fun pintaSprite(canvas: Canvas?) {
         if (isVisible()) {
             paint.color = color
-            canvas!!.drawRect(getRect(), paint)
+            val centroX = ancho / 2 + mRect.left
+            val centroY = alto / 2 + mRect.top
+            canvas!!.drawCircle(centroX, centroY, ancho / 2, paint)
+            /*paint.color = color
+            canvas!!.drawRect(getRect(), paint)*/
         }
     }
 
