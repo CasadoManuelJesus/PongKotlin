@@ -22,21 +22,21 @@ class Bola(x: Int, y: Int) : SpriteRect(x, y) {
     override var velInicialX: Float? = mScreenY / 100f
     override var velInicialY: Float? = mScreenY / 100f
 
-    override var velActualX: Float? = (velInicialX!! * cos(mult)).toFloat()
-    override var velActualY: Float? = (velInicialY!! * sin(mult)).toFloat()
+    override var velActualX: Float? = (velInicialX?.times(cos(Math.toRadians((Math.random() * 180)))))?.toFloat()
+    override var velActualY: Float? = (velInicialY?.times(sin(Math.toRadians((Math.random() * 180)))))?.toFloat()
 
     override fun colision(s: Sprite?): Boolean {
         return if (s is SpriteRect) colisionRect(s) else false
     }
 
     fun invertirVelX() {
-        val mult = (Math.random() * 360) + 1
-        velActualX = (-velInicialX!! * cos(mult)).toFloat()
+        val mult = (Math.random() * 180) + 1
+        velActualX = (-velInicialX!! * cos(Math.toRadians(mult))).toFloat()
     }
 
     fun invertirVelY() {
-        val mult = (Math.random() * 360) + 1
-        velActualY = (-velInicialY!! * sin(mult)).toFloat()
+        val mult = (Math.random() * 180) + 1
+        velActualY = (-velInicialY!! * sin(Math.toRadians(mult))).toFloat()
     }
 
     fun setRandomXVelocity() {
@@ -94,12 +94,12 @@ class Bola(x: Int, y: Int) : SpriteRect(x, y) {
 
             if (colisionBordeTop()) {
                 invertirVelY()
-                recolocaY(80f)
+                recolocaY(90f)
             }
 
             if (colisionBordeBottom()) {
                 invertirVelY()
-                recolocaY(mScreenY - 80f)
+                recolocaY(mScreenY - 90f)
                 pong.vidas--
                 if (pong.vidas == 0) {
                     // pong.pausado = true;
